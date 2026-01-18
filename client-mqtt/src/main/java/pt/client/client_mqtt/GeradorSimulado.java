@@ -1,4 +1,4 @@
-package pt.client.client_mqtt.Util;
+package pt.client.client_mqtt;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
