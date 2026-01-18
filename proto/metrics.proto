@@ -16,6 +16,7 @@ message RespostaMetrica {
   string mensagem = 2;
 }
 
+// Service to receive metrics from devices
 service MetricasService {
   // Chamada de procedimento remoto para enviar dados 
   rpc EnviarMetrica(PedidoMetrica) returns (RespostaMetrica);
