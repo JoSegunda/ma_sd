@@ -3,8 +3,9 @@ package pt.admin.admin_cli;
 import java.util.Scanner;
 
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType; // <--- IMPORTANTE
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder; // <--- IMPORTANTE
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -14,30 +15,45 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class AdminCliApplication implements CommandLineRunner {
 
-    private final String BASE_URL = "http://localhost:8080/api"; // URL do Servidor
+    private final String BASE_URL = "http://localhost:8080/api";
     private final RestTemplate restTemplate = new RestTemplate();
     private final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        SpringApplication.run(AdminCliApplication.class, args);
+        // A MAGIA ESTÁ AQUI: .web(WebApplicationType.NONE)
+        // Isto impede que o admin-cli tente roubar a porta 8080
+        new SpringApplicationBuilder(AdminCliApplication.class)
+            .web(WebApplicationType.NONE) 
+            .run(args);
     }
 
     @Override
     public void run(String... args) {
+        System.out.println("=== CLI de Administração Iniciado ===");
         boolean rodando = true;
-        System.out.println("=== Sistema de Monitorização Ambiental da UÉvora ===");
 
         while (rodando) {
             exibirMenu();
-            int opcao = scanner.nextInt();
-            scanner.nextLine(); // Consumir quebra de linha
+            System.out.print("Escolha: ");
+            String entrada = scanner.next(); 
 
-            switch (opcao) {
-                case 1: listarDispositivos(); break;
-                case 2: registarDispositivo(); break;
-                case 3: consultarMedias(); break; // Agregação
-                case 0: rodando = false; break;
-                default: System.out.println("Opção inválida.");
+            switch (entrada) {
+                case "1":
+                    listarDispositivos();
+                    break;
+                case "2":
+                    // Implementar lógica de registo
+                    registarDispositivo();
+                    break;
+                case "3":
+                    consultarMedias();
+                    break;
+                case "0":
+                    rodando = false;
+                    System.out.println("A sair...");
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
             }
         }
     }
@@ -46,68 +62,106 @@ public class AdminCliApplication implements CommandLineRunner {
         System.out.println("\n--- MENU ---");
         System.out.println("1. Listar Dispositivos");
         System.out.println("2. Registar Novo Dispositivo");
-        System.out.println("3. Consultar Médias (Sala/Edifício)");
+        System.out.println("3. Consultar Médias");
         System.out.println("0. Sair");
-        System.out.print("Escolha: ");
     }
-
-    // --- Implementação das Funcionalidades ---
 
     private void listarDispositivos() {
+        System.out.println("--> [DEBUG] 1. A preparar pedido...");
         try {
             String url = BASE_URL + "/devices";
-            ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-            System.out.println("\nDispositivos Registados:");
-            System.out.println(response.getBody()); // Exibe o JSON (pode ser melhorado com Jackson)
-        } catch (Exception e) {
-            System.err.println("Erro ao listar: " + e.getMessage());
-        }
-    }
-
-    private void registarDispositivo() {
-        System.out.print("ID do Dispositivo: ");
-        String id = scanner.nextLine();
-        System.out.print("Protocolo (REST/MQTT/GRPC): ");
-        String protocolo = scanner.nextLine();
-        System.out.print("Edifício: ");
-        String edificio = scanner.nextLine();
-        System.out.print("Sala: ");
-        String sala = scanner.nextLine();
-
-        // Criar JSON simples manualmente para enviar
-        String json = String.format(
-            "{\"id\":\"%s\", \"protocolo\":\"%s\", \"edificio\":\"%s\", \"sala\":\"%s\", \"ativo\":true}", 
-            id, protocolo, edificio, sala
-        );
-
-        try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            HttpEntity<String> entity = new HttpEntity<>(json, headers);
+            System.out.println("--> [DEBUG] 2. A contactar: " + url);
             
-            restTemplate.postForEntity(BASE_URL + "/devices", entity, String.class);
-            System.out.println("Dispositivo registado com sucesso!");
+            // Se bloquear aqui, é problema de rede/servidor
+            ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+            
+            System.out.println("--> [DEBUG] 3. Resposta recebida! Status: " + response.getStatusCode());
+            System.out.println("\n--- Lista de Dispositivos ---");
+            System.out.println(response.getBody());
+            
         } catch (Exception e) {
-            // Nota: Para simplificar, usei pseudo-código no envio. 
-            // Recomenda-se criar uma classe DTO 'Dispositivo' também neste projeto.
-            System.out.println("Enviado (Simulação).");
+            System.err.println("--> [ERRO] Falha na comunicação: " + e.getMessage());
+            e.printStackTrace(); // Ver o erro completo
         }
     }
 
     private void consultarMedias() {
-        System.out.print("Nível (sala/edificio): ");
-        String nivel = scanner.nextLine();
-        System.out.print("ID (ex: B01 ou Edificio_Ciencias): ");
-        String id = scanner.nextLine();
-
-        String url = String.format("%s/metrics/average?level=%s&id=%s", BASE_URL, nivel, id);
+        System.out.println("\n--- Consultar Médias ---");
+        System.out.println("Escolha o nível de agregação:");
+        System.out.println("1. ID do Dispositivo (ex: SENSOR_REST_01)");
+        System.out.println("2. Sala (ex: C20)");
+        System.out.println("3. Edificio (ex: Ciencias)");
+        System.out.println("4. Piso (ex: 1)");
+        System.out.print("> Opção: ");
         
+        String opcao = scanner.next();
+        String nivel = "";
+        
+        switch (opcao) {
+            case "1": nivel = "id"; break;
+            case "2": nivel = "sala"; break;
+            case "3": nivel = "edificio"; break;
+            case "4": nivel = "piso"; break; // ou "andar" dependendo do servidor
+            default: System.out.println("Opção inválida."); return;
+        }
+
+        System.out.print("Introduza o valor (ex: Ciencias, C20, SENSOR_01): ");
+        String valor = scanner.next();
+
         try {
-            String resposta = restTemplate.getForObject(url, String.class);
-            System.out.println("\n--- Resultados Agregados ---");
-            System.out.println(resposta);
+            String url = BASE_URL + "/metrics/average?level=" + nivel + "&id=" + valor;
+            String resultado = restTemplate.getForObject(url, String.class);
+            
+            if (resultado == null || resultado.isEmpty()) {
+                System.out.println("⚠️ Recebido resultado vazio. Verifique se o nome está exato.");
+            } else {
+                System.out.println("\n📊 Resultado das Médias:");
+                System.out.println(resultado);
+            }
         } catch (Exception e) {
-            System.err.println("Erro na consulta: " + e.getMessage());
+            System.err.println("Erro ao consultar: " + e.getMessage());
+            System.err.println("Verifique se o nome (Sala/Edificio) está igual ao registo (Maiúsculas/Minúsculas).");
         }
     }
+
+    private void registarDispositivo() {
+        System.out.println("\n--- Novo Registo ---");
+        
+        // texto sem espaços 
+        System.out.print("ID (ex: SENSOR_01): ");
+        String id = scanner.next();
+        
+        System.out.print("Protocolo (REST/MQTT/GRPC): ");
+        String protocolo = scanner.next();
+        
+        System.out.print("Edifício (ex: Ciencias): ");
+        String edificio = scanner.next();
+        
+        System.out.print("Sala (ex: B01): ");
+        String sala = scanner.next();
+
+        System.out.print("Departamento (ex: Informatica): ");
+        String departamento = scanner.next();
+
+        System.out.print("Piso (ex: 1): ");
+        String piso = scanner.next();
+
+        // Atualizar o JSON para incluir departamento e piso
+        String jsonBody = String.format(
+            "{\"id\":\"%s\", \"protocolo\":\"%s\", \"edificio\":\"%s\", \"sala\":\"%s\", \"departamento\":\"%s\", \"piso\":\"%s\", \"ativo\":true}", 
+            id, protocolo, edificio, sala, departamento, piso
+        );
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> request = new HttpEntity<>(jsonBody, headers);
+
+        try {
+            String url = BASE_URL + "/devices";
+            restTemplate.postForEntity(url, request, String.class);
+            System.out.println("Sucesso! Dispositivo " + id + " registado.");
+        } catch (Exception e) {
+            System.err.println("Erro ao registar: " + e.getMessage());
+        }
+}
 }

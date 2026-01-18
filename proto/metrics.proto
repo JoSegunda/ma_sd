@@ -5,7 +5,7 @@ option java_package = "pt.sd.server.grpc";
 
 // Estrutura da métrica enviada pelo dispositivo 
 message PedidoMetrica {
-  string idDispositivo = 1;
+  string id = 1;
   float temperatura = 2;
   float humidade = 3;
   string tempo = 4; // Formato ISO 8601 

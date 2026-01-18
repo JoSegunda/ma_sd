@@ -2,6 +2,9 @@ package pt.sd.server.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +16,10 @@ public class Metricas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonAlias("id") 
+    @JsonProperty("id_dispositivo")
     private String idDispositivo;
+    
     private float temperatura;
     private float humidade;
     private LocalDateTime tempo;

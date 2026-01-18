@@ -19,14 +19,14 @@ public class ClientGRpcApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         GeradorSimulado gerador = new GeradorSimulado();
-        String idDispositivo = "GATEWAY_UEVORA_01"; // Deve estar registado na BD [cite: 96]
+        String idDispositivo = "SENSOR_GRPC_01"; // Deve estar registado na BD [cite: 96]
 
         while (true) {
             gerador.gerarNovosDados();
 
             // Criar o pedido binário forte [cite: 38, 39]
             PedidoMetrica pedido = PedidoMetrica.newBuilder()
-                    .setIdDispositivo(idDispositivo)
+                    .setId(idDispositivo)
                     .setTemperatura(gerador.getTemperatura())
                     .setHumidade(gerador.getHumidade())
                     .setTempo(gerador.getTimestampAtual())

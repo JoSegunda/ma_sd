@@ -1,41 +1,64 @@
 package pt.client.client_mqtt;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import pt.sd.server.model.Metricas;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule; // datas
+import pt.client.client_mqtt.model.Metricas; 
+import java.util.Locale;
 
-@SpringBootApplication
 public class ClientMqttApplication {
-    public static void main(String[] args) throws Exception {
-        String broker = "tcp://localhost:61616"; // ActiveMQ [cite: 22]
-        MqttClient client = new MqttClient(broker, "Sensor-MQTT-01");
-        client.connect();
 
-        GeradorSimulado gerador = new GeradorSimulado();
-        ObjectMapper mapper = new ObjectMapper();
+    public static void main(String[] args) {
+        String broker = "tcp://localhost:1883";
+        String clientId = "Sensor-MQTT-Client-Gen";
+        String topico = "universidade/metricas"; // Confirme se o server ouve este tópico
+        
+        // --- CORREÇÃO 1: ID IGUAL AO REGISTO NO ADMIN-CLI ---
+        String idDispositivoNaBD = "SENSOR_MQTT_01"; 
+        // (Antes estava "SENSOR_MQTT_LAB_01", que não deve estar registado)
 
-        while (true) {
-            gerador.gerarNovosDados();
+        MemoryPersistence persistence = new MemoryPersistence();
+
+        try {
+            MqttClient sampleClient = new MqttClient(broker, clientId, persistence);
+            MqttConnectOptions connOpts = new MqttConnectOptions();
+            connOpts.setCleanSession(true);
             
-            Metricas m = new Metricas();
-            m.setIdDispositivo("SENSOR_MQTT_LAB_01");
-            m.setTemperatura(gerador.getTemperatura());
-            m.setHumidade(gerador.getHumidade());
+            System.out.println("A ligar ao broker: " + broker);
+            sampleClient.connect(connOpts);
+            System.out.println("Ligado!");
 
-            String json = mapper.writeValueAsString(m);
-            MqttMessage message = new MqttMessage(json.getBytes());
-            message.setQos(1);
+            while (true) {
+                // Simulação de dados
+                float temp = 20.0f + (float)(Math.random() * 5);
+                float hum = 50.0f + (float)(Math.random() * 10);
+                String tempoAgora = java.time.LocalDateTime.now().toString();
 
-            // Publicação assíncrona no tópico [cite: 24, 30]
-            client.publish("universidade/metricas", message);
-            System.out.println("MQTT: Publicado em 'universidade/metricas'");
+                
+                String content = String.format(Locale.US,
+                    "{\"id\":\"%s\", \"temperatura\":%.2f, \"humidade\":%.2f, \"tempo\":\"%s\"}",
+                    idDispositivoNaBD, 
+                    temp, 
+                    hum, 
+                    tempoAgora
+                );
+                
 
-            Thread.sleep(8000);
-			client.close();
+                MqttMessage message = new MqttMessage(content.getBytes());
+                message.setQos(1);
+                
+                sampleClient.publish(topico, message);
+                System.out.println("Enviado MQTT: " + content);
+                
+                Thread.sleep(5000);
+            }
+
+        } catch (Exception me) {
+            System.err.println("Erro MQTT: " + me.getMessage());
+            me.printStackTrace();
         }
-
-		
     }
 }

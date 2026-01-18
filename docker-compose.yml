@@ -3,8 +3,8 @@ services:
     image: postgres:15
     environment:
       POSTGRES_DB: monitorizacao_db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: j316PDAMTMQDSUF
     ports:
       - "5432:5432"
 
@@ -13,3 +13,4 @@ services:
     ports:
       - "61616:61616" # Porta MQTT
       - "8161:8161"   # Painel Web
+      - "1883:1883"   # Painel Web
