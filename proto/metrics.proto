@@ -1,18 +1,21 @@
 syntax = "proto3";
 
-package metrics;
+option java_multiple_files = true;
 
-message Metric {
-  string deviceId = 1;
-  double temperature = 2;
-  double humidity = 3;
-  string timestamp = 4;
+// Definição da mensagem de métrica [cite: 59]
+message MetricRequest {
+  string deviceId = 1;      // ID único 
+  float temperature = 2;   // Temperatura 
+  float humidity = 3;      // Humidade 
+  string timestamp = 4;    // Formato ISO 8601 
+}
+
+message MetricResponse {
+  string status = 1;
+  string message = 2;
 }
 
 service MetricService {
-  rpc sendMetric (Metric) returns (Ack);
-}
-
-message Ack {
-  bool success = 1;
+  // Envio de dados síncrono 
+  rpc SendMetric(MetricRequest) returns (MetricResponse);
 }
