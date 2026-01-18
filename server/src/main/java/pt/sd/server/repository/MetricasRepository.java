@@ -1,10 +1,18 @@
 package pt.sd.server.repository;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import pt.sd.server.model.Dispositivo;
+// import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 import pt.sd.server.model.Metricas;
+import java.time.LocalDateTime;
+import java.util.List;
 
-public interface MetricasRepository extends JpaRepository<Dispositivo, String> {}
-public interface DispositivoRepository extends JpaRepository<Metricas, Long> {}
+@Repository
+public interface MetricasRepository extends JpaRepository<Metricas, Long> {
+    
+    // Método para encontrar métricas brutas de um dispositivo num intervalo[cite: 118].
+    List<Metricas> findByIdDispositivoAndTempoBetween(String idDispositivo, LocalDateTime inicio, LocalDateTime fim);
 
-
+    // No futuro, adicionaremos aqui as queries customizadas para as médias agregadas [cite: 113-116].
+}
