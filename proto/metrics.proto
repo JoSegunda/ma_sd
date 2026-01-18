@@ -1,21 +1,22 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
+option java_package = "pt.sd.server.grpc";
 
-// Definição da mensagem de métrica [cite: 59]
-message MetricRequest {
-  string deviceId = 1;      // ID único 
-  float temperature = 2;   // Temperatura 
-  float humidity = 3;      // Humidade 
-  string timestamp = 4;    // Formato ISO 8601 
+// Estrutura da métrica enviada pelo dispositivo [cite: 59-63]
+message PedidoMetrica {
+  string idDispositivo = 1;
+  float temperatura = 2;
+  float humidade = 3;
+  string tempo = 4; // Formato ISO 8601 [cite: 77]
 }
 
-message MetricResponse {
+message RespostaMetrica {
   string status = 1;
-  string message = 2;
+  string mensagem = 2;
 }
 
-service MetricService {
-  // Envio de dados síncrono 
-  rpc SendMetric(MetricRequest) returns (MetricResponse);
+service MetricasService {
+  // Chamada de procedimento remoto para enviar dados [cite: 43]
+  rpc EnviarMetrica(PedidoMetrica) returns (RespostaMetrica);
 }
