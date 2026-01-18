@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: monitorizacao_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+
+  activemq:
+    image: apache/activemq-classic:latest
+    ports:
+      - "61616:61616" # Porta MQTT
+      - "8161:8161"   # Painel Web

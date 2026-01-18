@@ -1,0 +1,121 @@
+.
+├── admin-cli
+│   ├── HELP.md
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml
+│   ├── src
+│   │   ├── main
+│   │   │   ├── java
+│   │   │   │   └── pt
+│   │   │   │       └── admin
+│   │   │   │           └── admin_cli
+│   │   │   │               └── AdminCliApplication.java
+│   │   │   └── resources
+│   │   │       ├── application.properties
+│   │   │       ├── static
+│   │   │       └── templates
+│   │   └── test
+│   │       └── java
+│   │           └── pt
+│   │               └── admin
+│   │                   └── admin_cli
+│   │                       └── AdminCliApplicationTests.java
+│   └── target
+├── client-grpc
+│   ├── HELP.md
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml
+│   ├── src
+│   │   ├── main
+│   │   │   ├── java
+│   │   │   │   └── pt
+│   │   │   │       └── client_gRPC
+│   │   │   │           └── client_gRPC
+│   │   │   │               └── ClientGRpcApplication.java
+│   │   │   └── resources
+│   │   │       ├── application.properties
+│   │   │       ├── static
+│   │   │       └── templates
+│   │   └── test
+│   │       └── java
+│   │           └── pt
+│   │               └── client_gRPC
+│   │                   └── client_gRPC
+│   │                       └── ClientGRpcApplicationTests.java
+│   └── target
+├── client-mqtt
+│   ├── HELP.md
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml
+│   ├── src
+│   │   ├── main
+│   │   │   ├── java
+│   │   │   │   └── pt
+│   │   │   │       └── client
+│   │   │   │           └── client_mqtt
+│   │   │   │               └── ClientMqttApplication.java
+│   │   │   └── resources
+│   │   │       ├── application.properties
+│   │   │       ├── static
+│   │   │       └── templates
+│   │   └── test
+│   │       └── java
+│   │           └── pt
+│   │               └── client
+│   │                   └── client_mqtt
+│   │                       └── ClientMqttApplicationTests.java
+│   └── target
+├── client-rest
+│   ├── HELP.md
+│   ├── mvnw
+│   ├── mvnw.cmd
+│   ├── pom.xml
+│   ├── src
+│   │   ├── main
+│   │   │   ├── java
+│   │   │   │   └── pt
+│   │   │   │       └── client
+│   │   │   │           └── client_rest
+│   │   │   │               └── ClientRestApplication.java
+│   │   │   └── resources
+│   │   │       ├── application.properties
+│   │   │       ├── static
+│   │   │       └── templates
+│   │   └── test
+│   │       └── java
+│   │           └── pt
+│   │               └── client
+│   │                   └── client_rest
+│   │                       └── ClientRestApplicationTests.java
+│   └── target
+├── docker-compose.yml
+├── .gitignore
+├── proto
+│   └── metrics.proto
+├── README.md
+└── server
+    ├── HELP.md
+    ├── mvnw
+    ├── mvnw.cmd
+    ├── pom.xml
+    ├── src
+    │   ├── main
+    │   │   ├── java
+    │   │   │   └── pt
+    │   │   │       └── sd
+    │   │   │           └── server
+    │   │   │               └── ServerApplication.java
+    │   │   └── resources
+    │   │       ├── application.properties
+    │   │       ├── static
+    │   │       └── templates
+    │   └── test
+    │       └── java
+    │           └── pt
+    │               └── sd
+    │                   └── server
+    │                       └── ServerApplicationTests.java
+    └── target
