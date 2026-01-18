@@ -14,7 +14,7 @@ public class Dispositivo {
     private String edificio;
     private boolean ativo;
 
-    
+
     // Getters e Setters...
     public String getId() {
         return id;
