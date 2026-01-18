@@ -1,0 +1,107 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.1)
+
+2026-01-18T16:41:27.318Z  INFO 964611 --- [           main] pt.sd.server.ServerApplication           : Starting ServerApplication v0.0.1-SNAPSHOT using Java 21.0.9 with PID 964611 (/home/joel-pereira/Documents/trabalhos/SD/T2/ma_sd/server/target/server-0.0.1-SNAPSHOT.jar started by joel-pereira in /home/joel-pereira/Documents/trabalhos/SD/T2/ma_sd/server)
+2026-01-18T16:41:27.327Z  INFO 964611 --- [           main] pt.sd.server.ServerApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-01-18T16:41:28.789Z  INFO 964611 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'grpcHealthService' with a different definition: replacing [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=org.springframework.boot.grpc.server.autoconfigure.health.GrpcServerHealthAutoConfiguration; factoryMethodName=grpcHealthService; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/springframework/boot/grpc/server/autoconfigure/health/GrpcServerHealthAutoConfiguration.class]] with [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=net.devh.boot.grpc.server.autoconfigure.GrpcHealthServiceAutoConfiguration; factoryMethodName=grpcHealthService; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [net/devh/boot/grpc/server/autoconfigure/GrpcHealthServiceAutoConfiguration.class]]
+2026-01-18T16:41:28.815Z  INFO 964611 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'shadedNettyGrpcServerFactory' with a different definition: replacing [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=org.springframework.boot.grpc.server.autoconfigure.GrpcServerFactoryConfigurations$ShadedNettyServerFactoryConfiguration; factoryMethodName=shadedNettyGrpcServerFactory; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/springframework/boot/grpc/server/autoconfigure/GrpcServerFactoryConfigurations$ShadedNettyServerFactoryConfiguration.class]] with [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=net.devh.boot.grpc.server.autoconfigure.GrpcServerFactoryAutoConfiguration; factoryMethodName=shadedNettyGrpcServerFactory; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [net/devh/boot/grpc/server/autoconfigure/GrpcServerFactoryAutoConfiguration.class]]
+2026-01-18T16:41:28.820Z  INFO 964611 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'shadedNettyGrpcServerLifecycle' with a different definition: replacing [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=org.springframework.boot.grpc.server.autoconfigure.GrpcServerFactoryConfigurations$ShadedNettyServerFactoryConfiguration; factoryMethodName=shadedNettyGrpcServerLifecycle; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/springframework/boot/grpc/server/autoconfigure/GrpcServerFactoryConfigurations$ShadedNettyServerFactoryConfiguration.class]] with [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=net.devh.boot.grpc.server.autoconfigure.GrpcServerFactoryAutoConfiguration; factoryMethodName=shadedNettyGrpcServerLifecycle; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [net/devh/boot/grpc/server/autoconfigure/GrpcServerFactoryAutoConfiguration.class]]
+2026-01-18T16:41:28.985Z  INFO 964611 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-18T16:41:29.328Z  INFO 964611 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 326 ms. Found 2 JPA repository interfaces.
+2026-01-18T16:41:29.426Z  INFO 964611 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'compressionServerConfigurer' with a different definition: replacing [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=net.devh.boot.grpc.server.autoconfigure.GrpcServerAutoConfiguration; factoryMethodName=compressionServerConfigurer; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [net/devh/boot/grpc/server/autoconfigure/GrpcServerAutoConfiguration.class]] with [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=org.springframework.boot.grpc.server.autoconfigure.GrpcServerAutoConfiguration; factoryMethodName=compressionServerConfigurer; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/springframework/boot/grpc/server/autoconfigure/GrpcServerAutoConfiguration.class]]
+2026-01-18T16:41:29.429Z  INFO 964611 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'decompressionServerConfigurer' with a different definition: replacing [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=net.devh.boot.grpc.server.autoconfigure.GrpcServerAutoConfiguration; factoryMethodName=decompressionServerConfigurer; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [net/devh/boot/grpc/server/autoconfigure/GrpcServerAutoConfiguration.class]] with [Root bean: class=null; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; fallback=false; factoryBeanName=org.springframework.boot.grpc.server.autoconfigure.GrpcServerAutoConfiguration; factoryMethodName=decompressionServerConfigurer; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/springframework/boot/grpc/server/autoconfigure/GrpcServerAutoConfiguration.class]]
+2026-01-18T16:41:30.605Z  INFO 964611 --- [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-01-18T16:41:30.628Z  INFO 964611 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-18T16:41:30.628Z  INFO 964611 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-01-18T16:41:30.689Z  INFO 964611 --- [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3222 ms
+2026-01-18T16:41:30.965Z  INFO 964611 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-01-18T16:41:31.019Z  INFO 964611 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.0.Final
+2026-01-18T16:41:31.523Z  INFO 964611 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-18T16:41:31.566Z  INFO 964611 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-01-18T16:41:31.845Z  INFO 964611 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@bc52a41
+2026-01-18T16:41:31.847Z  INFO 964611 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-01-18T16:41:31.927Z  INFO 964611 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/monitorizacao_db]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 15.15
+	Default catalog/schema: monitorizacao_db/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-18T16:41:33.267Z  INFO 964611 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-18T16:41:33.320Z  INFO 964611 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-18T16:41:33.412Z  INFO 964611 --- [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-18T16:41:34.686Z  INFO 964611 --- [           main] g.s.a.GrpcServerFactoryAutoConfiguration : Detected grpc-netty-shaded: Creating ShadedNettyGrpcServerFactory
+2026-01-18T16:41:34.876Z  WARN 964611 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-18T16:41:35.636Z ERROR 964611 --- [           main] .m.i.MqttPahoMessageDrivenChannelAdapter : Exception while connecting
+
+Unrecognized packet (32108)
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:31) ~[org.eclipse.paho.client.mqttv3-1.2.5.jar!/:na]
+	at org.eclipse.paho.client.mqttv3.internal.wire.MqttInputStream.readMqttWireMessage(MqttInputStream.java:99) ~[org.eclipse.paho.client.mqttv3-1.2.5.jar!/:na]
+	at org.eclipse.paho.client.mqttv3.internal.CommsReceiver.run(CommsReceiver.java:137) ~[org.eclipse.paho.client.mqttv3-1.2.5.jar!/:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-01-18T16:41:35.649Z  INFO 964611 --- [           main] .m.i.MqttPahoMessageDrivenChannelAdapter : started bean 'inbound'; defined in: 'class path resource [pt/sd/server/mqtt/MqttConfig.class]'; from source: 'public org.springframework.integration.core.MessageProducer pt.sd.server.mqtt.MqttConfig.inbound()'
+2026-01-18T16:41:35.672Z ERROR 964611 --- [           main] .m.i.MqttPahoMessageDrivenChannelAdapter : Exception while unsubscribing
+
+Client is not connected (32104)
+	at org.eclipse.paho.client.mqttv3.internal.ExceptionHelper.createMqttException(ExceptionHelper.java:31) ~[org.eclipse.paho.client.mqttv3-1.2.5.jar!/:na]
+	at org.eclipse.paho.client.mqttv3.internal.ClientComms.sendNoWait(ClientComms.java:205) ~[org.eclipse.paho.client.mqttv3-1.2.5.jar!/:na]
+	at org.eclipse.paho.client.mqttv3.MqttAsyncClient.unsubscribe(MqttAsyncClient.java:1244) ~[org.eclipse.paho.client.mqttv3-1.2.5.jar!/:na]
+	at org.eclipse.paho.client.mqttv3.MqttAsyncClient.unsubscribe(MqttAsyncClient.java:1195) ~[org.eclipse.paho.client.mqttv3-1.2.5.jar!/:na]
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.doStop(MqttPahoMessageDrivenChannelAdapter.java:217) ~[spring-integration-mqtt-7.0.1.jar!/:7.0.1]
+	at org.springframework.integration.endpoint.AbstractEndpoint.doStop(AbstractEndpoint.java:210) ~[spring-integration-core-7.0.1.jar!/:7.0.1]
+	at org.springframework.integration.endpoint.AbstractEndpoint.stop(AbstractEndpoint.java:191) ~[spring-integration-core-7.0.1.jar!/:7.0.1]
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:480) ~[spring-context-7.0.2.jar!/:7.0.2]
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:645) ~[spring-context-7.0.2.jar!/:7.0.2]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:448) ~[spring-context-7.0.2.jar!/:7.0.2]
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:311) ~[spring-context-7.0.2.jar!/:7.0.2]
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:1012) ~[spring-context-7.0.2.jar!/:7.0.2]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:623) ~[spring-context-7.0.2.jar!/:7.0.2]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.1.jar!/:4.0.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.0.1.jar!/:4.0.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.0.1.jar!/:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.1.jar!/:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.0.1.jar!/:4.0.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.0.1.jar!/:4.0.1]
+	at pt.sd.server.ServerApplication.main(ServerApplication.java:10) ~[!/:0.0.1-SNAPSHOT]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:106) ~[server-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:64) ~[server-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:40) ~[server-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+
+2026-01-18T16:42:05.674Z  INFO 964611 --- [           main] .m.i.MqttPahoMessageDrivenChannelAdapter : stopped bean 'inbound'; defined in: 'class path resource [pt/sd/server/mqtt/MqttConfig.class]'; from source: 'public org.springframework.integration.core.MessageProducer pt.sd.server.mqtt.MqttConfig.inbound()'
+2026-01-18T16:42:05.675Z  WARN 964611 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-01-18T16:42:05.684Z  INFO 964611 --- [           main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-18T16:42:05.688Z  INFO 964611 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-01-18T16:42:05.692Z  INFO 964611 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-01-18T16:42:05.709Z  INFO 964611 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-01-18T16:42:05.735Z ERROR 964611 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+

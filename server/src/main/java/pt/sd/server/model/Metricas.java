@@ -2,10 +2,12 @@ package pt.sd.server.model;
 
 import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Metricas {
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
