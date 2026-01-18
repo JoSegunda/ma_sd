@@ -3,12 +3,12 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "pt.sd.server.grpc";
 
-// Estrutura da métrica enviada pelo dispositivo [cite: 59-63]
+// Estrutura da métrica enviada pelo dispositivo 
 message PedidoMetrica {
   string idDispositivo = 1;
   float temperatura = 2;
   float humidade = 3;
-  string tempo = 4; // Formato ISO 8601 [cite: 77]
+  string tempo = 4; // Formato ISO 8601 
 }
 
 message RespostaMetrica {
@@ -17,6 +17,6 @@ message RespostaMetrica {
 }
 
 service MetricasService {
-  // Chamada de procedimento remoto para enviar dados [cite: 43]
+  // Chamada de procedimento remoto para enviar dados 
   rpc EnviarMetrica(PedidoMetrica) returns (RespostaMetrica);
 }
