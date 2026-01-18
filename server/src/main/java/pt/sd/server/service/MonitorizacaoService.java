@@ -7,6 +7,7 @@ import pt.sd.server.model.Metricas;
 import pt.sd.server.repository.DispositivoRepository;
 import pt.sd.server.repository.MetricasRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +54,27 @@ public class MonitorizacaoService {
         
         // Dispositivo inválido ou inativo: descarta a métrica [cite: 96]
         return false;
+    }
+
+    //método que decide qual consulta executar com base no parâmetro level (nível de agregação)
+    public String consultarMedia(String nivel, String idEntidade, LocalDateTime inicio, LocalDateTime fim) {
+    // Exemplo: nivel="sala", idEntidade="B01"
+        if (inicio == null) inicio = LocalDateTime.now().minusHours(24); // Default: últimas 24h
+        if (fim == null) fim = LocalDateTime.now();
+
+        String resultado = null;
+
+        switch (nivel.toLowerCase()) {
+            case "edificio":
+                resultado = metricasRepository.obterMediaPorEdificio(idEntidade, inicio, fim);
+                break;
+            case "sala":
+                resultado = metricasRepository.obterMediaPorSala(idEntidade, inicio, fim);
+                break;
+            // Adicionar casos para 'departamento' e 'piso' conforme necessário
+        }
+
+        // Tratar retorno nulo (sem dados)
+        return resultado != null ? resultado : "0.0,0.0";
     }
 }
